@@ -20,7 +20,7 @@
                 200: '#e1e9f1',
                 300: '#cbd9e7',
                 400: '#9db6d1',
-                500: '#1a73e8', // Keep primary action blue
+                500: '#1a73e8',
                 600: '#1557b0',
                 700: '#174ea6',
                 800: '#0d2c5e',
@@ -71,13 +71,30 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+      /* Smooth Scrolling and Scrollbar Hiding */
+      :root, html {
+        scroll-behavior: smooth !important;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
       body { 
         font-family: 'Roboto', sans-serif; 
         color: #3c4043;
-        scroll-behavior: smooth;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
       }
+      
+      body::-webkit-scrollbar {
+        display: none;
+      }
+
       ::selection { background: #1a73e8; color: white; }
       h1, h2 { font-family: 'Playfair Display', serif; }
       
@@ -88,6 +105,22 @@
       }
       .reveal.active { opacity: 1; transform: translateY(0); }
       
+      /* Desktop Content Fitting */
+      @media (min-height: 600px) and (min-width: 1024px) {
+        .fit-section {
+          height: 100vh;
+          max-height: 100vh;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+        }
+        .fit-content {
+          transform-origin: center center;
+          /* Scale down slightly if height is tight */
+          transform: scale(clamp(0.8, 110vh / 1000, 1));
+        }
+      }
+
       .stagger > * { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
       .active .stagger > * { opacity: 1; transform: translateY(0); }
       .active .stagger > *:nth-child(1) { transition-delay: 0.1s; }
@@ -116,23 +149,21 @@
       }
     </style>
 
-  <link rel="stylesheet" href="/index.css">
-    <script type="importmap">
+<link rel="stylesheet" href="/index.css">
+  <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@19.0.0",
-    "react-dom": "https://esm.sh/react-dom@19.0.0",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "react-router-dom": "https://esm.sh/react-router-dom@7.1.0?external=react,react-dom",
-    "lucide-react": "https://esm.sh/lucide-react@0.461.0?external=react,react-dom",
+    "react": "https://esm.sh/react@^19.2.3",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.12.0",
     "react/": "https://esm.sh/react@^19.2.3/",
-    "vite": "https://esm.sh/vite@^7.3.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "vite": "https://esm.sh/vite@^7.3.1",
     "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
 </script>
-  <script type="module" crossorigin src="/assets/main-mgc2Ld1s.js"></script>
+  <script type="module" crossorigin src="/assets/main-DwBpwLkT.js"></script>
 </head>
   <body class="bg-white text-[#3c4043] antialiased">
     <div id="root"></div>
