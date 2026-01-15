@@ -5,24 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SustyDigi™ | Unified Intelligence</title>
     
-    <!-- SEO Meta Tags -->
     <meta name="description" content="SustyDigi Marketers: Your premium digital product and automation partner for Healthcare, Retail, and Wholesale enterprise scale." />
-    <link rel="canonical" href="https://sustydigimarketers.com" />
-    
-    <!-- Branding Favicon -->
     <link rel="icon" type="image/png" href="assets/brand/logo.png" />
-
-    <!-- Social Share (Open Graph) -->
-    <meta property="og:title" content="SustyDigi Marketers | Digital Products & Automation" />
-    <meta property="og:description" content="Engineering resilient, secure, and industry-focused digital infrastructure for modern enterprises." />
-    <meta property="og:image" content="https://sustydigimarketers.com/assets/brand/og-image.jpg" />
-    <meta property="og:url" content="https://sustydigimarketers.com" />
-    <meta property="og:type" content="website" />
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SustyDigi Marketers | Digital Products" />
-    <meta name="twitter:description" content="Professional digital automation and product engineering for global verticals." />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -31,23 +15,24 @@
           extend: {
             colors: {
               brand: {
-                50: '#f8f9fa',
-                100: '#e8f0fe',
-                200: '#d2e3fc',
-                300: '#aecbfa',
-                400: '#7baaf7',
-                500: '#4285f4', // Google Blue
-                600: '#1a73e8', // Google Cloud Blue
-                700: '#185abc',
-                800: '#174ea6',
-                900: '#0d2c5e',
+                50: '#f8fafd',
+                100: '#f0f4f9',
+                200: '#e1e9f1',
+                300: '#cbd9e7',
+                400: '#9db6d1',
+                500: '#1a73e8', // Keep primary action blue
+                600: '#1557b0',
+                700: '#174ea6',
+                800: '#0d2c5e',
+                900: '#06162e',
               },
-              google: {
-                blue: '#4285F4',
-                red: '#EA4335',
-                yellow: '#FBBC05',
-                green: '#34A853',
-                grey: '#5F6368'
+              intel: {
+                blue: '#1a73e8',
+                red: '#d93025',
+                yellow: '#f9ab00',
+                green: '#1e8e3e',
+                slate: '#3c4043',
+                deep: '#06162e'
               }
             },
             fontFamily: {
@@ -56,25 +41,28 @@
               ui: ['Poppins', 'sans-serif'],
             },
             animation: {
-              blob: "blob 7s infinite",
-              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-              'fade-in': 'fadeIn 1s ease-out forwards',
-              'spin-slow': 'spin 8s linear infinite',
+              blob: "blob 10s infinite cubic-bezier(0.4, 0, 0.2, 1)",
+              'fade-in-up': 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'fade-in': 'fadeIn 1.2s ease-out forwards',
+              'pulse-soft': 'pulseSoft 4s ease-in-out infinite',
             },
             keyframes: {
               blob: {
-                "0%": { transform: "translate(0px, 0px) scale(1)" },
-                "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                "0%, 100%": { transform: "translate(0px, 0px) scale(1)" },
+                "33%": { transform: "translate(30px, -40px) scale(1.1)" },
                 "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
-                "100%": { transform: "translate(0px, 0px) scale(1)" },
               },
               fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '0%': { opacity: '0', transform: 'translateY(40px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
               },
               fadeIn: {
                 '0%': { opacity: '0' },
                 '100%': { opacity: '1' },
+              },
+              pulseSoft: {
+                '0%, 100%': { opacity: '0.8', transform: 'scale(1)' },
+                '50%': { opacity: '1', transform: 'scale(1.05)' },
               }
             },
           }
@@ -87,44 +75,80 @@
         font-family: 'Roboto', sans-serif; 
         color: #3c4043;
         scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
       }
+      ::selection { background: #1a73e8; color: white; }
       h1, h2 { font-family: 'Playfair Display', serif; }
-      h3, h4, h5, h6, nav, button, .font-ui { font-family: 'Poppins', sans-serif; }
-      ::-webkit-scrollbar { width: 8px; }
-      ::-webkit-scrollbar-track { background: #f1f3f4; }
-      ::-webkit-scrollbar-thumb { background: #dadce0; border-radius: 4px; }
-      .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+      
+      .reveal { 
+        opacity: 0; 
+        transform: translateY(30px); 
+        transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); 
+      }
       .reveal.active { opacity: 1; transform: translateY(0); }
+      
+      .stagger > * { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+      .active .stagger > * { opacity: 1; transform: translateY(0); }
+      .active .stagger > *:nth-child(1) { transition-delay: 0.1s; }
+      .active .stagger > *:nth-child(2) { transition-delay: 0.2s; }
+      .active .stagger > *:nth-child(3) { transition-delay: 0.3s; }
+      .active .stagger > *:nth-child(4) { transition-delay: 0.4s; }
+      .active .stagger > *:nth-child(5) { transition-delay: 0.5s; }
+
+      .path-draw {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        transition: stroke-dashoffset 3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .active .path-draw { stroke-dashoffset: 0; }
+      
+      .glass-morphism {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      
+      .deep-glass {
+        background: rgba(6, 22, 46, 0.8);
+        backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
     </style>
 
-<link rel="stylesheet" href="/index.css">
-  <script type="importmap">
+  <link rel="stylesheet" href="/index.css">
+    <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react-router-dom": "https://esm.sh/react-router-dom@7.1.0?external=react,react-dom",
+    "lucide-react": "https://esm.sh/lucide-react@0.461.0?external=react,react-dom",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0",
     "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
     "vite": "https://esm.sh/vite@^7.3.0",
     "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
 </script>
-  <script type="module" crossorigin src="/assets/main-DLCSZ8UY.js"></script>
+  <script type="module" crossorigin src="/assets/main-mgc2Ld1s.js"></script>
 </head>
   <body class="bg-white text-[#3c4043] antialiased">
     <div id="root"></div>
-    <!-- Single module entry point for Vite production builds -->
     <script>
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) entry.target.classList.add('active');
         });
       }, { threshold: 0.1 });
-      setInterval(() => {
+      
+      const initReveals = () => {
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-      }, 1000);
+      };
+      
+      window.addEventListener('DOMContentLoaded', initReveals);
+      setInterval(initReveals, 1000);
     </script>
 </body>
 </html>
